@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<!-- Timeline CSS -->
+<link href="{% static 'dist/css/timeline.css' %}" rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+<link href="{% static 'bower_components/morrisjs/morris.css' %}" rel="stylesheet">
+
+<style>
+    #picture {
+        background-image: url("{{ query_image }}"); 
+        background-repeat: no-repeat; 
+        background-position: center;
+
+        height: 500px;
+    }
+
+    #logo {
+        background-image: url("{{ query_logo }}"); 
+        background-repeat: no-repeat; 
+        background-position: center;
+
+        height: 500px;
+    }
+</style>
+
+<!-- Header -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Wikipedia Article Analysis: {{ query }}</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<!-- First Row: Summary, Image  -->
+<div class="row">
+    <div class="col-lg-8">
+
+        <div class="panel panel-default">
+            <div class="panel-footer" style="font-size: 20px; text-align: center">
+                Wikipedia Summary: {{ query }}
+            </div>
+            <div class="panel-body">
+                <div style="font-size: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'SegoeUI Symbol'; padding: 4rem 2rem;">
+                    {{query_summary|safe}}
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+
+        <!-- If there is a logo -->
+        {% if query_logo %}
+            <div id="logo" class="panel panel-default">
+                <!-- <div class="panel-body"></div> -->
+                <div class="panel-footer" style="font-size: 20px; text-align: center"">
+                    {{ query }} logo
+                </div>
+            </div>
+        {% endif %}
+
+        <!-- If there is an image -->
+        {% if query_image %}
+            <div id="picture" class="panel panel-default">
+                <!-- <div class="panel-body"></div> -->
+                <div class="panel-footer" style="font-size: 20px; text-align: center"">
+                    {{ query }} image
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="panel panel-default">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>TYPE</th>
+                            <th>DESCRIPTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for value in query_infobox %}
+                        <tr>
+                            <td>{{value.0}}</td>
+                            <td>{{value.1}}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+    <!-- <div class="col-*-*"></div> -->
+
+
+{% endblock content %}

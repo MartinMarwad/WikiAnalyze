@@ -1,73 +1,54 @@
 """
 Created by Martin Marwad.
 
-This module will 
-"""
+
+
+
 
 import wikipedia
 import wptools
 
+class SearchResult:
+    related = None
 
-# Try to Lookup Author
-author, error = self.lookup_author(author)
-def lookup_author(self, author):
-    """Look up author on wikipedia, and extract info from infobox."""
 
-    # We will grab the first person closest to the name
-    candidates = wikipedia.search(author.name)
+class SearchWikipedia(object):
+    def __init__(self, query=str):
+        Requires a search query in string format.
+        self.searchresult = SearchResult()
 
-    if candidates:
-        candidate = candidates[0]
-        wikipage = wikipedia.page(candidate)
+        # Returns possible matches.
+        queries = wikipedia.search(query)
+        
+        if queries != None:
+            # Save results
+            self.searchresult.related = queries
 
-        # Now we check if this is the right person
-        # We can see if the author's source name is in their wikipedia page
-        if author.source in wikipage.content:
-            # Hurray! This is the right person
-
-            # Now, get all their details from wikipedia's infobox
-            page = wptools.page(candidate)
+            # Search Wikipedia and returns the result.
+            query = queries[0]
+            wikipage = wikipedia.page(query)
+            page = wptools.page(query)
             page.get_parse()
 
+            # Get the info box on the page.
             infobox = page.data['infobox']
 
-            # We know these values are always there
-            author.wikipage = wikipage.url
-            author.description = wikipedia.summary(candidate)
-
-            # infobox sometimes returns []
+            # Determine the attributes in the infobox.
             for attribute in infobox:
                 if attribute == 'birth_name':
-                    author.fullname = infobox['birth_name']
+                    self.searchresult.fullname = infobox['birth_name']
                 elif attribute == 'office':
-                    author.title = infobox['office'].replace(
-                        '[', '').replace(']', '')
+                    self.searchresult.title = infobox['office'].replace('[', '').replace(']', '')
                 elif attribute == 'birth_date':
-                    author.birth_date = parser.parse(infobox['birth_date'].split('|', 1)[
-                                                        1].replace("}", "").replace('|', '-'))
+                    self.searchresult.birth_date = parser.parse(infobox['birth_date'].split('|', 1)[1].replace("}", "").replace('|', '-'))
                 elif attribute == 'image':
-                    author.image = page.images()[0]['url']
+                    self.searchresult.image = page.images()[0]['url']
                 elif attribute == 'party':
-                    author.political_party = infobox['party'].replace(']', '').split('|')[
-                        1]
-
-            # Process
-            # page.data['infobox']['instrument']
-
-            # author.fullname         = page.data['infobox']['birth_name']
-            # author.name             = author.name
-            # author.wikipage         = wikipage.url
-            # author.title            = page.data['infobox']['office'].replace('[','').replace(']', '')
-            # author.birth_date       = parser.parse( page.data['infobox']['birth_date'].split('|', 1)[1].replace("}", "").replace('|', '-') )
-            # author.image            = page.images()[0]['url']
-            # author.description      = wikipedia.summary(candidate)
-            # author.political_party  = page.data['infobox']['party'].replace(']','').split('|')[1]
-
-            return author, None  # Error is None
+                    self.searchresult.political_party = infobox['party'].replace(']', '').split('|')[1]
         else:
-            # Wrong person. Perhaps the source name isn't exactly spelled as in the wikipedia page?
-            # The Author exists, but doesn't seem to be associated with the source.
-            return author, "Wrong Author?"
-    else:
-        return author, "Author Not On Wikipedia!"
+            pass
 
+    def save(self):
+        return self.searchresult
+
+"""

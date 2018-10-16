@@ -1,12 +1,13 @@
-# WikiSearch
+# WikiAnalyze
 
 ## About
-WikiSearch is an An Artificially Intelligent Wikipedia Search Engine. 
+WikiAnalyze is an application to search, find, and convert wikipedia'a information into structured data. 
 
 ## How It Works
 
-## Technologies Used
+## WikiAnalyze's Technologies
 - Django 
+- Wikipedia API
 - wptools
 - SpaCy
 

@@ -1,25 +1,124 @@
-{% extends "dashboard/base.html" %}
+{% extends "base.html" %}
 {% load staticfiles %}
-
-{% block extrahead %}
-
-<!-- Timeline CSS -->
-<link href="{% static 'dist/css/timeline.css' %}" rel="stylesheet">
-
-<!-- Morris Charts CSS -->
-<link href="{% static 'bower_components/morrisjs/morris.css' %}" rel="stylesheet">
-
-{% endblock extrahead %}
 
 
 {% block content %}
-    
+
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header">WikiSearch</h1>
+        <h1 class="page-header">WikiAnalyze</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
+
+<div class="row">
+    <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
+                </div>
+                <div class="panel-body">
+                    <div id="morris-donut-chart"><svg height="357" version="1.1" width="478.65625" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.328125px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><path fill="none" stroke="#0b62a4" d="M239.328125,295A114,114,0,0,0,346.93967810728583,218.6265018017594" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#0b62a4" stroke="#ffffff" d="M239.328125,298A117,117,0,0,0,349.77156108379336,219.6166729018057L396.02564970008285,235.78946753589526A166,166,0,0,1,239.328125,347Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#3980b5" d="M346.93967810728583,218.6265018017594A114,114,0,0,0,137.06025883321087,130.62854429647973" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#3980b5" stroke="#ffffff" d="M349.77156108379336,219.6166729018057A117,117,0,0,0,134.36899919724272,129.3029796727029L90.41175847642984,107.65209081768101A166,166,0,0,1,396.02564970008285,235.78946753589526Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#679dc6" d="M137.06025883321087,130.62854429647973A114,114,0,0,0,239.2923108443382,294.9999943743255" stroke-width="2" opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path><path fill="#679dc6" stroke="#ffffff" d="M134.36899919724272,129.3029796727029A117,117,0,0,0,239.29136836655763,297.9999942262815L239.2744037665073,351.9999915614883A171,171,0,0,1,85.92632574981627,105.44281644471961Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="239.328125" y="171" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="15px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 15px; font-weight: 800;" font-weight="800" transform="matrix(1.5161,0,0,1.5161,-123.5186,-93.9374)" stroke-width="0.6595699317738791"><tspan dy="6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Mail-Order Sales</tspan></text><text x="239.328125" y="191" text-anchor="middle" font-family="&quot;Arial&quot;" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 14px;" transform="matrix(2.375,0,0,2.375,-329.2051,-251.625)" stroke-width="0.42105263157894735"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">20</tspan></text></svg></div>
+                    <a href="#" class="btn btn-default btn-block">View Details</a>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>TYPE</th>
+                        <th>DESCRIPTION</th>
+                    </tr>
+                </thead>
+                <tbody>  
+                    <tr>
+                        <td>PERSON</td>
+                        <td>People, including fictional.</td>
+                    </tr>
+                    <tr>
+                        <td>NORP</td>
+                        <td>Nationalities or religious or political groups.</td>
+                    </tr>
+                    <tr>
+                        <td>FAC</td>
+                        <td>Buildings, airports, highways, bridges, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>ORG</td>
+                        <td>Companies, agencies, institutions, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>GPE</td>
+                        <td>Countries, cities, states.</td>
+                    </tr>
+                    <tr>
+                        <td>LOC</td>
+                        <td>Non-GPE locations, mountain ranges, bodies of water.</td>
+                    </tr>
+                    <tr>
+                        <td>PRODUCT</td>
+                        <td>Objects, vehicles, foods, etc. (Not services.)</td>
+                    </tr>
+                    <tr>
+                        <td>EVENT</td>
+                        <td>Named hurricanes, battles, wars, sports events, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>WORK_OF_ART	</td>
+                        <td>Titles of books, songs, etc.</td>
+                    </tr>
+                    <tr>
+                        <td>LAW	</td>
+                        <td>Named documents made into laws.</td>
+                    </tr>
+                    <tr>
+                        <td> LANGUAGE </td>
+                        <td> Any named language.</td>
+                    </tr>
+                    <tr>
+                        <td>DATE </td>
+                        <td>Absolute or relative dates or periods.</td>
+                    </tr>
+                    <tr>
+                        <td>TIME </td>
+                        <td>Times smaller than a day.</td>
+                    </tr>
+                    <tr>
+                        <td>PERCENT	</td>
+                        <td>Percentage, including "%".</td>
+                    </tr>
+                    <tr>
+                        <td>MONEY </td>
+                        <td>Monetary values, including unit.</td>
+                    </tr>
+                    <tr>
+                        <td>QUANTITY </td>
+                        <td>Measurements, as of weight or distance.</td>
+                    </tr>
+                    <tr>
+                        <td>ORDINAL</td>
+                        <td>"first", "second", etc.</td>
+                    </tr>
+                    <tr>
+                        <td>CARDINAL </td>
+                        <td>Numerals that do not fall under another type.</td>
+                    </tr>
+                           
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<!-- <div class="row">
+    <div class="col-*-*"></div>
+    <div class="col-*-*"></div>
+    <div class="col-*-*"></div>
+</div> -->
 
 
 {% endblock content %}

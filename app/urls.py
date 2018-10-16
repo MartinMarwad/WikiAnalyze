@@ -1,4 +1,4 @@
-"""wikisearch URL Configuration
+"""wikianalyze URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.0/topics/http/urls/
@@ -21,18 +21,7 @@ from . import views
 app_name = "dashboard"
 
 urlpatterns = [
-    path('home/', views.HomeView.as_view(), name='home'),
-    path('', views.LoginView.as_view(), name='login'),
-    path('index/', views.IndexView.as_view(), name="index"),
-    path('blank/', views.BlankView.as_view(), name="blank"),
-    path('buttons/', views.ButtonsView.as_view(), name="buttons"),
-    path('flot/', views.FlotView.as_view(), name="flot"),
-    path('forms/', views.FormsView.as_view(), name="forms"),
-    path('grid/', views.GridView.as_view(), name="grid"),
-    path('icons/', views.IconsView.as_view(), name="icons"),
-    path('morris/', views.MorrisView.as_view(), name="morris"),
-    path('notifications/', views.NotificationsView.as_view(), name="notifications"),
-    path('panels/', views.PanelsView.as_view(), name="panels"),
-    path('tables/', views.TablesView.as_view(), name="tables"),
-    path('typography/', views.TypographyView.as_view(), name="typography"),
+    path('', views.index, name='index'),
+    path('search/', views.search, name="search"),
+    path('wikipage/<query>', views.wikipage, name="wikipage"),
 ]
