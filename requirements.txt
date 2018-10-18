@@ -1,3 +1,5 @@
 wikipedia
 wptools
 django 
+spacy
+beautifulsoup4
