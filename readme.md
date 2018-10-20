@@ -48,7 +48,7 @@ Industrial-Strength Natural Language Processing. "spaCy is an open-source softwa
 
 Install the dependencies:
 ```shell
-python -m pip install requirements.txt -r 
+python -m pip install -r requirements.txt 
 ```
 
 ### Running
